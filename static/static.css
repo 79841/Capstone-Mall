@@ -1,0 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:ital@1&display=swap&effect=3d");
+
+@font-face {
+    font-family: "GmarketSansBold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}

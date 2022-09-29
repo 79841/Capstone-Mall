@@ -1,0 +1,66 @@
+<!doctype HTML>
+	<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Capstone Login</title>
+	<link rel="stylesheet" href="{{ url_for('static', path='/signin.css') }}">
+	<script src="https://kit.fontawesome.com/51db22a717.js" crossorigin="anonymous"></script>
+	<style>
+		.main-container .main-wrap .logo-wrap img{
+			height:100px;
+			width:auto;
+		}
+		.login-input-section-wrap{
+			padding-top:30px;
+		}
+	</style>
+</head>
+<body>
+	<form action="/auth" method="post">
+	<div class="main-container">
+		<div class="main-wrap">
+		<header>
+			<!-- <div class="sel-lang-wrap">
+				<select class="lang-select">
+					<option>한국어</option>
+					<option>English</option>
+				</select>
+			</div> -->
+			<div class="logo-wrap">
+				<!-- <img src="https://user-images.githubusercontent.com/71022086/142759801-4c20827b-83c6-4a1a-892c-90ad95683ce0.png"> -->
+				<!-- <div id="logo" class="font-effect-3d">Squid Jeans</div> -->
+				<!-- <img src="{{ url_for('static', path='/logo.png') }}" alt=""> -->
+				<h1>Capstone Mall</h1>
+			</div>
+		</header>
+		<section class="login-input-section-wrap">
+			<div class="login-input-wrap">	
+				<input placeholder="email" type="text" name="email"></input>
+			</div>
+			<div class="login-input-wrap password-wrap">	
+				<input placeholder="Password" type="password" name="password"></input>
+			</div>
+			<div class="login-button-wrap">
+				<button id="submit">Sign in</button>
+			</div>
+			<div class="login-stay-sign-in">
+				<i class="far fa-check-circle"></i>
+				<span>Stay Signed in</span>
+			</div>
+		</section>
+		<section class="Easy-sgin-in-wrap">
+			<p class="forget-msg">Forgot your Username or Password? | <a href="/user">Sign up</a></p>
+		</section>
+		<footer>
+			<!-- <div class="copyright-wrap">
+			<span>	<img src="img/logo.png"> Copyright © NAVER Corp. All Rights Reserved.</span>
+			</div> -->
+		</footer>
+		</div>
+	</div>
+	 </form>
+</body>
+<!-- <script src="{{ url_for('static', path='/signin.js') }}"></script> -->
+</html>

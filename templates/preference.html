@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://codepen.io/jebbles/pen/MKoYya">
+    <meta property="twitter:title" content="Onboarding Screens">
+    <meta property="twitter:description" content="">
+    <meta property="twitter:image" content="https://assets.codepen.io/167555/onboarding-walkthrough-screens.PNG">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://codepen.io/jebbles/pen/MKoYya">
+    <meta property="og:title" content="Onboarding Screens">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://assets.codepen.io/167555/onboarding-walkthrough-screens.PNG">
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:700,300'>
+    <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css'>
+    <link rel="stylesheet" href="../static/assets/css/survey_style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/preference.css') }}">
+
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+          <div class="letter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+          </div>
+          <div class="letter">
+            <ion-icon name="triangle-outline"></ion-icon>
+          </div>
+          <div class="letter">
+            <ion-icon name="square-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div class="letter">
+            <ion-icon name="ellipse-outline"></ion-icon>
+          </div>
+          <div class="letter">
+            <ion-icon name="triangle-outline"></ion-icon>
+          </div>
+          <div class="letter">
+            <ion-icon name="square-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="margin">
+        <button class='open-walkthrough'>Start</button>
+        <div class='walkthrough show reveal'>
+          <div class='walkthrough-pagination'>
+            <a class='dot active'></a>
+            <a class='dot'></a>
+          </div>
+          <form action="/preference" method="post" id="form">
+          <div class='walkthrough-body'>
+            <ul class='screens animate'>
+              <li class='screen active'>
+        
+                <h3>
+                  Q1. About My Favorite Jean
+                </h3>
+                <p> 주어진 4가지 요소<span style="color: #3a3e45;"><i>(연령,인기,스타일,별점)</i></span>들을 자신이 청바지를 고를 때 중요하다고 생각되는 순서대로 체크해주세요!
+                </p> 
+                
+          
+                <h4></h4>
+                <div class="taste">
+                    <label for="trend">trend</label>
+                    <input type="text" name="trend" >
+                </div>
+                <div class="taste">
+                    <label for="agegroup">agegroup</label>
+                    <input type="text" name="agegroup" readonly>
+                </div>
+                <div class="taste">
+                    <label for="rating">rating</label>
+                    <input type="text" name="rating" readonly>
+                </div>
+                <br>
+                <input id="init1" type="button" value="초기화"><br>
+              </li>
+
+        
+              <li class='screen'>
+                <br><br><br><br><br><br>
+                <h3>
+                  설문에 응해주셔서 감사합니다<br>
+                  당신에게 어울리는 멋진 핏의 청바지들을 추천해줄게요!!한 번 보러 가보실까요~?</h3>
+              </li>
+            </ul>
+            
+            <button type="button" class='prev-screen'>
+              <i class='icon-angle-left'></i>
+            </button>
+            <button type="button" class='next-screen'>
+              <i class='icon-angle-right'></i>
+            </button>
+          </div>
+          <div class='walkthrough-footer'>
+            <button class='button finish close' disabled='true' >Let's Go Shopping</button>
+            <!-- <input type="submit" class='button finish close' disabled='true' value="Let's Go Shopping"> -->
+          </div>
+          </form>
+        </div>
+          </div>
+        </div>
+</body>
+<!-- <script src="{{ url_for('static', path='/preference.js') }}"></script> -->
+
+<script>
+
+  let rank1 = 1
+  let rank2 = 1
+  
+  let tastes = document.getElementsByClassName('taste')
+  for(taste of tastes){
+    taste.addEventListener('click',function(){
+      let box = this.getElementsByTagName('input')[0]
+      if(!box.value){
+        box.value = rank1;
+        rank1 += 1;
+      }
+    })
+  } 
+
+  let styles = document.getElementsByClassName('style')
+  for(style of styles){
+      style.addEventListener('click',function(){
+          let box = this.getElementsByTagName('input')[0]
+          if(!box.value){
+              box.value = rank2;
+              rank2 += 1;
+          }
+      })
+  }
+
+  document.getElementById('init1')
+    .addEventListener('click', function(){
+      for(e of document.querySelectorAll('.taste input[type=text]')){
+        e.value=''
+      }
+      rank1 = 1;
+    }
+  )
+
+  document.getElementById('init2')
+  .addEventListener('click', function(){
+    for(e of document.querySelectorAll('.style input[type=text]')){
+      e.value=''
+    }
+    rank2 = 1;
+  }
+)
+
+    const form = document.getElementById("form");
+    form.addEventListener("submit", function () {
+        document
+            .querySelectorAll("input[type=checkbox]:not(:checked)")
+            .forEach(function (item) {
+                item.value = "0";
+                item.checked = true;
+            });
+    });
+
+</script>
+<script src='https://code.jquery.com/jquery-1.12.0.min.js'></script><script src="./script.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="./../static/assets/js/test.js"></script>
+</html>

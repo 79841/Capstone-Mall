@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lnag="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Squid Jeans Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/static.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', path='/signup.css') }}" />
+    <style>
+      .signup-title {
+        color: black;
+        text-decoration: none;
+        display: block;
+        font-size: 1em;
+        margin-block-start: 0.67em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/user" method="post">
+      <!-- header -->
+      <div id="header">
+        <a href="/user" title="회원가입 페이지" class="signup-title">
+          <!-- <img
+            src="{{ url_for('static', path='/logo.png') }}"
+            id="logo"
+            style="height: 80px; width: auto"
+          /> -->
+          <h1>Capstone Mall</h1>
+        </a>
+      </div>
+
+      <!-- wrapper -->
+      <div id="wrapper">
+        <!-- content-->
+        <div id="content">
+          <!-- ID -->
+          <div>
+            <h3 class="join_title">
+              <label for="id">이름</label>
+            </h3>
+            <span class="box int_id">
+              <input
+                type="text"
+                name="username"
+                class="int"
+                maxlength="20"
+                placeholder="name"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- PW1 -->
+          <div>
+            <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+            <span class="box int_pass">
+              <input
+                type="password"
+                name="password"
+                class="int"
+                maxlength="20"
+                placeholder="password"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- PW2 -->
+          <div>
+            <h3 class="join_title">
+              <label for="pswd2">비밀번호 재확인</label>
+            </h3>
+            <span class="box int_pass_check">
+              <input
+                type="password"
+                name="passwordCheck"
+                class="int"
+                maxlength="20"
+                placeholder="password"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- height -->
+          <div>
+            <h3 class="join_title"><label for="name">키</label></h3>
+            <span class="box int_name">
+              <input
+                type="text"
+                name="height"
+                class="int"
+                maxlength="20"
+                placeholder="height"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+          <!-- weight -->
+          <div>
+            <h3 class="join_title"><label for="name">몸무게</label></h3>
+            <span class="box int_name">
+              <input
+                type="text"
+                name="weight"
+                class="int"
+                maxlength="20"
+                placeholder="weight"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- jeansize -->
+          <!-- <div>
+                    <h3 class="join_title"><label for="name">청바지 사이즈</label></h3>
+                    <span class="box int_name">
+                        <input type="text" name="jeansize" class="int" maxlength="20" placeholder="size(S/M/L)">
+                    </span>
+                    <span class="error_next_box"></span>
+                </div> -->
+          <!-- jeansize -->
+          <div>
+            <h3 class="join_title"><label for="name">청바지 사이즈</label></h3>
+            <span class="box gender_code">
+              <select name="jeansize" class="sel">
+                <option>청바지 사이즈</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+              </select>
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- BIRTH -->
+          <input
+            type="text"
+            id="birthday"
+            name="birthday"
+            style="display: none"
+          />
+          <div>
+            <h3 class="join_title"><label for="yy">생년월일</label></h3>
+
+            <div id="bir_wrap">
+              <!-- BIRTH_YY -->
+              <div id="bir_yy">
+                <span class="box">
+                  <input
+                    type="text"
+                    id="yy"
+                    class="int bir"
+                    maxlength="4"
+                    placeholder="년(4자)"
+                  />
+                </span>
+              </div>
+
+              <!-- BIRTH_MM -->
+              <div id="bir_mm">
+                <span class="box">
+                  <select id="mm" class="sel bir">
+                    <option>월</option>
+                    <option value="01">1</option>
+                    <option value="02">2</option>
+                    <option value="03">3</option>
+                    <option value="04">4</option>
+                    <option value="05">5</option>
+                    <option value="06">6</option>
+                    <option value="07">7</option>
+                    <option value="08">8</option>
+                    <option value="09">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                </span>
+              </div>
+
+              <!-- BIRTH_DD -->
+              <div id="bir_dd">
+                <span class="box">
+                  <input
+                    type="text"
+                    id="dd"
+                    class="int bir"
+                    maxlength="2"
+                    placeholder="일"
+                  />
+                </span>
+              </div>
+            </div>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- GENDER -->
+          <div>
+            <h3 class="join_title"><label for="gender">성별</label></h3>
+            <span class="box gender_code">
+              <select id="gender" class="sel">
+                <option>성별</option>
+                <option value="M">남자</option>
+                <option value="F">여자</option>
+              </select>
+            </span>
+            <span class="error_next_box">필수 정보입니다.</span>
+          </div>
+
+          <!-- EMAIL -->
+          <div>
+            <h3 class="join_title"><label for="email">이메일</label></h3>
+            <span class="box int_email">
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="int"
+                maxlength="100"
+                placeholder="입력"
+              />
+            </span>
+            <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>
+          </div>
+
+          <!-- MOBILE -->
+          <div>
+            <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
+            <span class="box int_mobile">
+              <input
+                type="tel"
+                name="phonenumber"
+                id="mobile"
+                class="int"
+                maxlength="16"
+                placeholder="전화번호 입력"
+              />
+            </span>
+            <span class="error_next_box"></span>
+          </div>
+
+          <!-- JOIN BTN-->
+          <div class="btn_area">
+            <!-- <button type="button" id="btnJoin">
+                        <span>가입하기</span>
+                    </button> -->
+            <input type="submit" id="btnJoin" value="가입하기" />
+          </div>
+          <p class="forget">
+            Already have an account? <a href="/auth">Sign in</a>
+          </p>
+        </div>
+        <!-- content-->
+      </div>
+      <!-- wrapper -->
+      <script src="{{ url_for('static', path='/signup.js') }}"></script>
+    </form>
+  </body>
+</html>

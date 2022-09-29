@@ -1,0 +1,45 @@
+/* .rating_price {
+    display: flex;
+    align-items: center;
+} */
+.starrating {
+    display: inline-block;
+    position: relative;
+    width: 120px;
+    height: 20px;
+    vertical-align: text-top;
+}
+.starrating .rating {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 20px;
+}
+.starrating .rating .star {
+    display: inline-block;
+    width: 20px;
+    height: 100%;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+}
+.starrating .rating .star span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: gray;
+}
+.starrating .rating:nth-child(2) .star span {
+    /* width:50%; */
+    background: rgb(223, 223, 22);
+}

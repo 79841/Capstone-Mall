@@ -1,0 +1,13 @@
+.img-box {
+  /* background-color: transparent; */
+  /* border: 0; */
+}
+.single-img {
+  height: 30vh;
+  object-fit: contain;
+}
+.carousel-img {
+  height: 8vh;
+  object-fit: contain;
+  background-color: white;
+}
