@@ -19,7 +19,7 @@ async def login(request: Request):
 
 # @router.post('/', response_model=schemas.ShowUser)
 @router.post('/')
-async def create_user(request: schemas.CreateUser = Depends(schemas.CreateUser.as_form), db: Session = Depends(get_db)):
+async def create_user(request: schemas.CreateUser, db: Session = Depends(get_db)):
     return user.create(request, db)
 
 

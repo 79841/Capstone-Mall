@@ -6,9 +6,10 @@ import datetime
 
 def create(request: schemas.CreateUser, db: Session):
 
+    print(request)
     user = dict(request)
     if user['password'] != user['passwordCheck']:
-        return 'password not correct'
+        return {'msg':'password not correct'}
     user.update(password=hashing.Hash.bcrypt(user['password']))
     
     user.pop("passwordCheck")
@@ -19,9 +20,9 @@ def create(request: schemas.CreateUser, db: Session):
     db.commit()
     db.refresh(new_user)
     
-    return RedirectResponse(
-        '/auth', status_code=status.HTTP_302_FOUND)
-
+    # return RedirectResponse(
+    #     '/auth', status_code=status.HTTP_302_FOUND)
+    return {'msg':'success'}
 
 def show(id: int, db: Session):
     user = db.query(models.User).filter(models.User.id == id).first()

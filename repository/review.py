@@ -4,16 +4,13 @@ from fastapi import HTTPException, status
 
 
 def get_all_review(db: Session, category:str, num: int):
+    reviewModel = models.TopReview
     if category == "top":
-        # productModel = models.Top
         reviewModel = models.TopReview
     elif category == "pants":
-        # productModel = models.Pants
         reviewModel = models.PantsReview
-    # result = db.query(reviewModel).join(productModel).filter(reviewModel.product_id == num)[0:6]
-    result = db.query(reviewModel).filter(reviewModel.product_id == num)[0:6]
-    print(category, num)
-    print(result)
+    result = db.query(reviewModel).filter(reviewModel.product_id == num)[0:3]
+
     return result
 
 

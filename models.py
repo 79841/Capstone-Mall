@@ -15,12 +15,13 @@ class User(Base):
     username = Column(String(100), nullable=False, unique=True)
     password = Column(String(200), nullable=False)
     email = Column(String(200), nullable=False, unique=True)
-    phonenumber = Column(String(100), nullable=False, unique=True)
-    birthday = Column(String(100))
-    age = Column(Integer)
+    # phonenumber = Column(String(100), nullable=False, unique=True)
+    # birthday = Column(String(100))
+    # age = Column(Integer)
     height = Column(Integer)
     weight = Column(Integer)
-    jeansize = Column(String(10))
+    # jeansize = Column(String(10))
+    gender = Column(String(10))
 
 
 

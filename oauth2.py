@@ -26,6 +26,9 @@ class OAuth2PasswordBearerCookie(OAuth2):
         header_authorization: str = request.headers.get("Authorization")
         cookie_authorization: str = request.cookies.get("Authorization")
 
+        print("hahahahahahaha")
+        print(request.cookies)
+
         header_scheme, header_param = get_authorization_scheme_param(
             header_authorization
         )
@@ -66,7 +69,8 @@ def get_current_user(data: str = Depends(oauth2_scheme)):
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
-
+    # print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    # print(data)
     return getToken.verify_token(data, credentials_exception)
 
 

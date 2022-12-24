@@ -12,16 +12,27 @@ router = APIRouter(
 )
 
 
+# @router.get('/', response_class=HTMLResponse)
+# async def signin(request: Request):
+#     if oauth2.login_check(request):
+#         return RedirectResponse(url="/")
+
+#     return view.signin(request)
+
 @router.get('/', response_class=HTMLResponse)
 async def signin(request: Request):
     if oauth2.login_check(request):
-        return RedirectResponse(url="/")
+        return {"msg":"false"}
 
-    return view.signin(request)
+    return {"msg":"true"}
 
 
-@ router.post('/', response_class=Response)
-async def signin(request: schemas.Login = Depends(schemas.Login.as_form), db: Session = Depends(database.get_db)):
+# @ router.post('/', response_class=Response)
+# async def signin(request: schemas.Login, db: Session = Depends(database.get_db)):
+#     return auth.signin(request, db)
+
+@ router.post('/')
+async def signin(request: schemas.Login, db: Session = Depends(database.get_db)):
     return auth.signin(request, db)
 
 

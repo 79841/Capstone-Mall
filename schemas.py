@@ -18,11 +18,13 @@ class User(BaseModel):
     username: str
     email: str
     password: str
-    phonenumber: str
-    birthday: str
+    # phonenumber: str
+    # birthday: str
+    gender:str
     height: int
     weight: int
-    jeansize: str
+    # jeansize: str
+    
 
 
 class CreateUser(User):
@@ -37,11 +39,12 @@ class CreateUser(User):
         passwordCheck: str = Form(...),
         phonenumber: str = Form(...),
         birthday: str = Form(...),
+        gender: str = Form(...),
         height: str = Form(...),
         weight: str = Form(...),
         jeansize: str = Form(...)
     ):
-        return cls(username=username, email=email, password=password, passwordCheck=passwordCheck, phonenumber=phonenumber, birthday=birthday, height=int(height), weight=int(weight), jeansize=jeansize)
+        return cls(username=username, email=email, password=password, passwordCheck=passwordCheck, phonenumber=phonenumber, birthday=birthday, gender=gender, height=int(height), weight=int(weight), jeansize=jeansize)
 
 
 class ShowUser(BaseModel):

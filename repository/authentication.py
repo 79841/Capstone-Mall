@@ -7,9 +7,11 @@ from fastapi.responses import RedirectResponse
 from fastapi.security.utils import get_authorization_scheme_param
 
 
-def signin(request: schemas.Login = Depends(schemas.Login.as_form), db: Session = Depends(database.get_db)):
+def signin(request: schemas.Login, db: Session = Depends(database.get_db)):
+    print(request.email)
     user = db.query(models.User).filter(
         models.User.email == request.email).first()
+    print(user.email)
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Invalid Credentials")
@@ -20,16 +22,18 @@ def signin(request: schemas.Login = Depends(schemas.Login.as_form), db: Session 
 
     access_token = getToken.create_access_token(
         data={"id": user.id, "email": user.email})
-    response = RedirectResponse(
-        '/', status_code=status.HTTP_302_FOUND)
-    response.set_cookie(
-        "Authorization",
-        value=f"Bearer {access_token}",
-        httponly=True,
-        max_age=1800,
-        expires=1800,
-    )
-    return response
+    print(access_token)
+    # response = RedirectResponse(
+    #     '/', status_code=status.HTTP_302_FOUND)
+    # response.set_cookie(
+    #     "Authorization",
+    #     value=f"Bearer {access_token}",
+    #     httponly=True,
+    #     max_age=1800,
+    #     expires=1800,
+    # )
+    # return response
+    return {"Authorization":f"Bearer {access_token}"}
 
 
 def logout():
