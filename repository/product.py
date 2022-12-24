@@ -2,23 +2,35 @@ from sqlalchemy.orm import Session
 from sqlalchemy.sql import text
 import models, schemas
 from fastapi import HTTPException, status
+from knn import knn_pants, knn_top
+from fastapi import Depends
+import oauth2
 
-
-# def get_all(db: Session):
-#     return db.query(models.Pants).all()
-
-
-def get_all(db: Session, current_user: schemas.User, category:str, pg: int):
+def get_all(db: Session, category:str, pg: int):
     if category == "top":
         products = db.query(models.Top)
     elif category == "pants":
         products = db.query(models.Pants)
-    # return len(list(r))
+    return products[(pg-1)*36+1:pg*36+1]
 
-    return products[(pg-1)*10+1:pg*10+1]
-    # return db.query(models.Product).all()[(pg-1)*10+1:pg*10+1]
-    # return db.query(models.Product).all()
+def get_one_product(db: Session, category:str, num: int):
+    model = models.Top
+    print(category)
+    if category == "top":
+        model = models.Top
+    elif category == "pants":
+        model = models.Pants
+    return db.query(model).filter(model.product_id == num).first()
 
+def show_recommend_list(db: Session, category:str, pg: int, current_user: schemas.User = Depends(oauth2.get_current_user)):
+    print(current_user)
+    user_info = db.query(models.User).filter(models.User.email == current_user.email).first().__dict__
+    print(user_info)
+    if category == "rtop":
+        products = knn_top(user_info["gender"], user_info["height"], user_info["weight"])
+    elif category == "rpants":
+        products = knn_pants(user_info["gender"], user_info["height"], user_info["weight"])
+    return products
 
 def show(id: int, db: Session):
     pants = db.query(models.Pants).filter(models.Pants.id == id).first()
